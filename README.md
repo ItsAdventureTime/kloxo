@@ -54,7 +54,27 @@ This fork named as Kloxo-MR (meaning 'Kloxo fork by Mustafa Ramadhan').
 ### How to install
 
 * Read https://github.com/mustafaramadhan/kloxo/blob/release/how-to-install.txt
-
+* To install Kloxo-MR-7:
+    cd /
+    # update centos to latest version
+    yum update -y
+    # install some packages like package-cleanup, etc
+    yum install yum-utils yum-priorities vim-minimal subversion curl zip unzip -y
+    yum install telnet wget -y
+    setenforce 0
+    echo 'SELINUX=disabled' > /etc/selinux/config
+    cd /tmp
+    # remove old rpm
+    rm -f mratwork*
+    # get repo file -- no need for 6.5.0.c and after
+    wget https://github.com/mustafaramadhan/kloxo/raw/rpms/release/neutral/noarch/mratwork-release-0.0.1-1.noarch.rpm --no-check-certificate
+    rpm -ivh mratwork-release-0.0.1-1.noarch.rpm
+    cd /
+    # update
+    yum clean all
+    yum update mratwork-* -y
+    yum install kloxomr7 -y
+    sh /script/upcp
 
 ### Notes
 *) New features in Kloxo-MR 7.0.0 (aka Kloxo-MR-7)
